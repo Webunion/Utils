@@ -94,7 +94,21 @@ class UtilsTest extends \PHPUnit_Framework_TestCase
 		$test = Utils::urlsafeB64Decode($string);
 
 		$this->assertEquals( $expected , $test );
-    }
+    }	
 	
-	
+	//isMobile();
+	public function testShouldReturnIfTheStringIsFromMobileDevice()
+    {
+		$string = [
+					'Mozilla/5.0 (Linux; Android 5.1; XT1058 Build/LPA23.12-21.7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/46.0.2490.76 Mobile Safari/537.36',
+					'Mozilla/5.0 (iPhone; CPU iPhone OS 7_1_2 like Mac OS X) AppleWebKit/537.51.2 (KHTML, like Gecko) Version/7.0 Mobile/11D257 Safari/9537.53',
+					'Mozilla/5.0 (iPad; CPU OS 8_3 like Mac OS X) AppleWebKit/600.1.4 (KHTML, like Gecko) Version/8.0 Mobile/12F69 Safari/600.1.4',
+					'Mozilla/5.0 (iPad; CPU OS 8_3 like Mac OS X) AppleWebKit/600.1.4 (KHTML, like Gecko) CriOS/46.0.2490.85 Mobile/12F69 Safari/600.1.4',
+					'Opera/9.80 (iPad; Opera Mini/11.0.0/37.7206; U; pt) Presto/2.12.423 Version/12.16',
+				];
+		foreach( $string as $k=>$v ){
+			$_SERVER['HTTP_USER_AGENT'] = $v;
+			$this->assertEquals( true , Utils::isMobile(false) );
+		}
+    }	
 }

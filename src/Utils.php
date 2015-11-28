@@ -259,7 +259,7 @@ class Utils
 
 	
 	//Verifica se o acesso esta sendo feito de um celular ou dispositivo movel
-	public static function isMobile(){
+	public static function isMobile( $sendHeaders = true ){
 		$mobile_browser   = false; // set mobile browser as false till we can prove otherwise
 		$user_agent       = (array_key_exists('HTTP_USER_AGENT', $_SERVER) ? $_SERVER['HTTP_USER_AGENT'] : ''); // get the user agent value - this should be cleaned to ensure no nefarious input gets executed
 		$accept           = (array_key_exists('HTTP_ACCEPT', $_SERVER) ? $_SERVER['HTTP_ACCEPT'] : ''); // get the content accept value - this should be cleaned to ensure no nefarious input gets executed
@@ -304,10 +304,11 @@ class Utils
 			break; // break even though it's the last statement in the switch so there's nothing to break away from but it seems better to include it than exclude it
 
 		} // ends the switch 
-
-		// tell adaptation services (transcoders and proxies) to not alter the content based on user agent as it's already being managed by this script
-		header('Cache-Control: no-transform'); // http://mobiforge.com/developing/story/setting-http-headers-advise-transcoding-proxies
-		header('Vary: User-Agent, Accept'); // http://mobiforge.com/developing/story/setting-http-headers-advise-transcoding-proxies
+		if( $sendHeaders ){
+			// tell adaptation services (transcoders and proxies) to not alter the content based on user agent as it's already being managed by this script
+			header('Cache-Control: no-transform'); // http://mobiforge.com/developing/story/setting-http-headers-advise-transcoding-proxies
+			header('Vary: User-Agent, Accept'); // http://mobiforge.com/developing/story/setting-http-headers-advise-transcoding-proxies
+		}
 		return $mobile_browser;
 	}
 	
