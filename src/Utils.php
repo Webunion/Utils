@@ -13,7 +13,8 @@ class Utils
 			$object = get_object_vars($object);
 		}
 		if(is_array($object)){
-			return array_map('\Helper::'.__FUNCTION__, $object);
+			
+			return array_map( __CLASS__ .'::'. __FUNCTION__, $object);
 		}
 		else{
 			return $object;
@@ -22,6 +23,7 @@ class Utils
 
     //Trata uma string para uma URL
     public static function stringToUrl($var){
+		$var = trim($var);
 		$a = array("á","à","ã","â","Á","À","Ã","Â");
 		$e = array("é","è","ê","É","È","Ê");
 		$i = array("í","ì","î","Í","Ì","Î");
