@@ -1,11 +1,10 @@
-<?php
-namespace Webunion\Utils;
+<?php namespace Webunion\Utils;
 
-Class Utils{
-	
+class Utils
+{	
 	CONST VERSION = 2.0;
-	
-//Converte object para array
+
+	//Converte object para array
     public static function objectToArray($object){
 		if(!is_object($object ) && !is_array($object)){
 			return $object;
