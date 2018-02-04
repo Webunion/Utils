@@ -2,7 +2,7 @@
     "name": "webunion/utils",
     "description": "Simple Utils classes, array, encrypt, etc",
     "keywords": ["Utils", "common classes"],
-    "license": "BSD Style",
+    "license": "MIT",
     "authors": [
         {
             "name": "Ricardo Fontanelli",
